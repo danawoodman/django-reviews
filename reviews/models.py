@@ -83,6 +83,7 @@ class ReviewedItem(models.Model):
     # TODO: Add flagging of reviews...
     
     class Meta:
+        ordering = ('date_added',)
         verbose_name = _('reviewed item')
         verbose_name_plural = _('reviewed items')
         # unique_together = (('content_type', 'object_id', 'key', 'user')) #, 'ip_address'
