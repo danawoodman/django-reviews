@@ -33,7 +33,30 @@ class ReviewedItemManager(models.Manager):
     """
     Allows Reviews to be listed and sorted by various criteria.
     """
-    pass
+    
+    def average_rating(self):
+        """
+        Return the average rating out of 5 for the ReviewedItem.
+        """
+        reviews = self.get_query_set()
+        num_reviews = reviews.all().count()
+        total_stars = 0
+        for r in reviews.all():
+            total_stars += r.score
+        return float(total_stars) / num_reviews
+    
+    def average_rating_percentage(self):
+        """
+        Return the average rating percentage for the ReviewedItem.
+        """
+        reviews = self.get_query_set()
+        num_reviews = reviews.all().count()
+        total_stars = 0
+        for r in reviews.all():
+            total_stars += r.score
+        possible_stars = num_reviews * 5
+        return (total_stars * 100) / float(possible_stars)
+    
     
     # TODO: Add get_rating
     
