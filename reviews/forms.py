@@ -17,9 +17,16 @@ class ReviewedItemForm(ModelForm):
         (5, 5),
     )
     score = forms.ChoiceField(label=_('Rating'), required=True, 
-        choices=SCORE_CHOICES, widget=forms.RadioSelect(attrs={'class': 'star'}))
-    content = forms.CharField(label=_('Review'), required=True, help_text='', widget=forms.Textarea)
-        
+        choices=SCORE_CHOICES, widget=forms.RadioSelect(attrs={'class': 'star'}), 
+        error_messages={
+            'required': _("Please choose a rating for this plugin."),
+            'invalid_choice': _("Please choose a rating for this plugin.")
+        })
+    content = forms.CharField(label=_('Review'), required=True, help_text='', 
+        widget=forms.Textarea, error_messages={
+            'required': _("Please tell us what you think of this plugin.")
+        })
+    
     class Meta:
         model = ReviewedItem
         fields = (
