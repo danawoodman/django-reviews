@@ -29,11 +29,14 @@ class VoteManager(models.Manager):
         return self.get_query_set().filter(like=False).count()
 
 
-class ReviewManager(models.Manager):
+class ReviewedItemManager(models.Manager):
     """
     Allows Reviews to be listed and sorted by various criteria.
     """
     pass
+    
+    # TODO: Add get_rating
+    
     # def get_for_user(self, user):
     #     try:
     #         return self.get_query_set().filter(user__pk=user.id)
