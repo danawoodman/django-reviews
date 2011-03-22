@@ -41,6 +41,8 @@ class ReviewedItemManager(models.Manager):
         reviews = self.get_query_set()
         num_reviews = reviews.all().count()
         total_stars = 0
+        if num_reviews == 0:
+            return 0
         for r in reviews.all():
             total_stars += r.score
         return float(total_stars) / num_reviews
@@ -52,6 +54,8 @@ class ReviewedItemManager(models.Manager):
         reviews = self.get_query_set()
         num_reviews = reviews.all().count()
         total_stars = 0
+        if num_reviews == 0:
+            return 0
         for r in reviews.all():
             total_stars += r.score
         possible_stars = num_reviews * 5
